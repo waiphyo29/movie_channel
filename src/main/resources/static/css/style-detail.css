@@ -1,0 +1,300 @@
+@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css);
+
+/* css for detail page */
+.bg-img-container{
+    width: 100%;
+    height: 550px;
+    position: relative;
+    overflow: hidden;
+}
+.bg-img-container > img{
+    display: block;
+    width: 100%;
+    object-fit: cover;
+    margin-top: -15%;
+}
+.bg-img-container .over-bg-img{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 0;
+}
+.fix-image{
+	width: 100%;
+	height: 100%;
+}
+.fix-image img{
+    display: block;
+    width: 100%;
+    object-fit: cover;
+}
+.head .title h1{
+    color: #ffff;
+}
+.title p{
+    display: inline;
+}
+.title > div{
+    display: inline-block;
+    width: 80px;
+    height: 25px;
+    color: #161616;
+    background-color: rgba(255, 208, 0, 0.76);
+    text-align: center;
+    border-radius: 15px;
+    margin-left: 10px;
+}
+.rating-box > div{
+	display: flex;
+	justify-content: start;
+	align-items: center;
+	margin-bottom: 10px;
+}
+.rating-box > div span{
+	color: #ffff;
+	margin-left: 15px;
+}
+.runtime span{
+	color: #ffff;
+}
+.info-list ul{
+    list-style-type: none;
+    margin-left: 0px;
+    padding: 0px;
+}
+.info-list ul li{
+    margin-bottom: 5px;
+}
+.info-list ul a{
+    text-decoration: none;
+}
+.info-list ul span{
+    margin-left: 3px;
+    color: #ffff;
+}
+.info-list ul a span:hover{
+	color: #b6b6b6;
+}
+
+/* star-rating */
+.star-container{
+	display: inline-block;
+	margin-left: 20px;
+}
+.rating-wrap{
+	max-width: 150px;
+	height: 30px;
+	padding: 0;
+	display: flex;
+	text-align: center;
+	align-items: center;
+	box-sizing: border-box;
+	border-right: #6d6d6d solid 1px;
+}
+.center{
+	width: 150px;
+	margin: auto 0px; 
+}
+.center > div{
+	display: inline;
+	position: relative;
+	top: 5px;
+}
+/*styling star rating*/
+.rating{
+	border: none;
+	float: left;
+}
+.rating > input{
+	display: none;
+}
+.rating > label:before{
+	content: '\f005';
+	font-family: FontAwesome;
+	margin: 3px;
+	font-size: 1rem;
+	display: inline-block;
+}
+.rating > .half:before{
+	content: '\f089';
+	position: absolute;
+}
+.rating > label{
+	color: #ddd;
+	float: right;
+}
+.rating > input:checked ~ label{
+	color: rgb(255, 168, 7)
+}
+
+
+.content{
+    width: 100%;
+    min-height: 500px;
+    margin-top: -5%;
+    padding: 0px;
+    border-radius: 10px;
+    background-color: #161616;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 100px;
+}
+.content .switch{
+    width: 100%;
+    height: 50px;
+    background-color: #1f1f1f;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid black;
+}
+.content .switch >button{
+    width: 33%;
+    height: 100%;
+    border: none;
+    outline: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    background-color: transparent;
+    color: #b6b6b6;
+}
+.content .switch >button:hover{
+    background-color: #161616;
+}
+.content .contentInfo{
+    width: 100%;
+    height: 450px;
+    top: 50px;
+    background-color: #161616;
+    position: absolute;
+    transform: translateX(100%);
+    overflow-y: auto;
+}
+.content .contentInfo::-webkit-scrollbar{
+	width: 6px;
+}
+.content .contentInfo::-webkit-scrollbar-thumb{
+	background: rgb(128, 128, 128);
+	border-radius: 3px;
+}
+.content .contentInfo::-webkit-scrollbar-thumb:hover{
+	background: rgb(255, 255, 255);
+}
+.synopsis-info{
+    padding: 50px 20px 0px;
+    text-align: justify;
+    text-indent: 2rem;
+}
+.episode-info{
+	padding: 70px 50px 0px;
+}
+.episode-info ul{
+    list-style-type: none;
+}
+.lang-box{
+	width: 100%;
+	min-height: 400px;
+	position: relative;
+	overflow: hidden;
+}
+.lang-box .btn-con{
+	display: flex;
+	justify-content: end;
+}
+.lang-box .btn-con button{
+	color: aliceblue;
+	background-color: transparent;
+}
+.lang-box .egBox,
+.lang-box .mmBox{
+	width: 100%;
+	min-height: 400px;
+	padding-top: 10px;
+    position: absolute;
+    transform: translateX(100%);
+}
+.lang-box .egBox{
+	transform: translateX(0);
+}
+.comment-info{
+	padding: 20px 5%;
+}
+.comment-info .comment-box{
+	width: 100%;
+	min-height: 150px;
+	padding: 20px 30px 10px;
+	border-radius: 10px;
+	margin-bottom: 5px;
+	border: 2px solid #6d6d6d;
+}
+.comment-box .user-info{
+	display: flex;
+	margin-bottom: 30px;
+	justify-content: space-between;
+	align-items: baseline;
+}
+.user-info .dropdown {
+	display: flex;
+	justify-content: space-evenly;
+}
+.dropdown .record p{
+	position: relative;
+	bottom: -3px;
+	margin-bottom: 0px;
+	margin-right: 5px;
+	font-size: small;
+}
+.comment-box .user-info h4{
+	display: inline;
+	margin: 10px 10px 0px;
+}
+.comment-box .comments{
+	width: 100%;
+	height: 70px;
+    text-indent: 2rem;
+    text-align: justify;
+    position: relative;
+    overflow: hidden;
+}
+.comment-info .wapp-comment-box{
+	width: 100%;
+	min-height: 400px;
+}
+.comment-info .input-comment{
+	width: 100%;
+	height: 50px;
+	margin-top: 20px;
+}
+.comments .actCom{
+	width: 100%;
+	height: 70px;
+	top: 0;
+	position: absolute;
+	overflow-y: auto;
+	transform: translateX(150%);
+}
+.comments .actCom::-webkit-scrollbar{
+	width: 3px;
+}
+.comments .actCom::-webkit-scrollbar-thumb{
+	background: #b6b6b6;
+}
+.edit-box .editBtnCon{
+	display: flex;
+	justify-content: end;
+}
+.comments .act{
+	transform: translateX(0);
+}
+#synopsis{
+    transform: translateX(0);
+}
+.content .switch > button:first-child{
+    background-color: #161616;
+}

@@ -1,0 +1,53 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link th:replace="~{common/header :: header}" rel="stylesheet" href="#">
+	<link rel="stylesheet" th:href="@{/css/style.css}">
+	<title>Movie Form</title>
+</head>
+
+<body>
+
+	<nav th:replace="~{common/nav :: navebar}"></nav>
+
+
+	<div class="container d-flex justify-content-center"><h1>Episodes Form</h1></div>
+	<div class="container" style="margin-bottom: 278px;">
+		<form th:object="${episode}" th:action="@{ '/episode/' + ${movieId} + '/create'}" method="post">
+			<input type="hidden" th:field="*{id}" >
+			<div class="row d-flex justify-content-between mt-5">
+				<div class="col-6">
+					<label for="link" class="form-label ms-3">Enter Link</label>
+					<input type="text" th:field="*{link}" th:value="${episode.link}" class="form-control" id="link" placeholder="Link" required>
+				</div>
+				<div class="col-5">
+					<div class="row">
+						<div class="col-6">
+							<label for="episode" class="form-label ms-3">Enter EP-Number</label>
+							<input type="number" min="1" max="100" th:field="*{episode}" th:value="${episode.episode}" class="form-control" id="episode" placeholder="Episode" >
+						</div>
+						<div class="col-6">
+							<label for="quality" class="form-label ms-3">Choose Quality</label>
+							<select class="form-select form-control" th:field="*{quality}" id="quality">
+								<option th:each="qualityValue : ${T(com.hostmdy.movie.domain.Quality).values()}"
+								th:value="${qualityValue.name()}" 
+								th:text="${qualityValue.name()}" 
+								selected="${qualityValue.name() == episode.quality}">
+								</option>
+							</select>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<button type="submit" class="btn btn-info mt-5 position-relative end-0">Save</button>
+		</form>
+	</div>
+
+	<footer th:replace="~{common/footer :: footer}"></footer>
+	<script th:replace="~{common/bootstrap-script :: footer}"></script>
+</body>
+
+</html>

@@ -1,0 +1,161 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link th:replace="~{common/header :: header}" rel="stylesheet" href="#">
+	<link rel="stylesheet" th:href="@{/css/style.css}">
+	<title>Movie Form</title>
+</head>
+
+<body>
+
+	<nav th:replace="~{common/nav :: navebar}"></nav>
+
+	<div class="container d-flex justify-content-center mt-4"><h1>Movie Form</h1></div>
+	<div class="container mt-3 position-relative mb-5">
+		<form enctype="multipart/form-data" th:action="@{/movie/create}" method="post">
+			<input type="hidden" name="id" th:value="${movie.id}">
+			<input type="hidden" name="view" th:value="${movie.view}">
+		<div class="row d-flex justify-content-between">
+			<div class="col-6">
+				<label for="title" class="form-label ms-3">Movie Title</label>
+				<input type="text" class="form-control" name="title" th:value="${movie.title}" id="title" placeholder="Title" required>
+			</div>
+			<div class="col-5">
+				<div class="col-6">
+					<label for="type" class="form-label ms-3">Movie or Serie</label>
+					<select class="form-select form-control" name="type" id="type" required>
+						<option
+						th:each="typeValue : ${T(com.hostmdy.movie.domain.Type).values()}"
+						th:value="${typeValue.name()}"
+						th:text="${typeValue.name()}" 
+						th:selected="${typeValue.name() == movie.type}">
+						</option>
+					</select>
+				</div>
+			</div>
+		</div>
+
+		<div class="row d-flex justify-content-between mt-5">
+			<div class="col-6">
+				<div class="row">
+					<div class="col-8">
+						<label for="directors" class="form-label ms-3">Directors</label>
+						<input type="text" class="form-control" name="createdBy" th:value="${movie.createdBy}" id="directors" placeholder="Directors" required>
+					</div>
+					<div class="col-4">
+						<label for="country" class="form-label ms-3">Country</label>
+						<input type="text" class="form-control" name="country" th:value="${movie.country}" id="country" placeholder="Country" required>
+					</div>
+				</div>
+			</div>
+			<div class="col-5">
+				<div class="row">
+					<div class="col-4">
+						<label for="rating" class="form-label ms-3">Rating </label>
+						<input type="text" class="form-control" name="rating" th:value="${movie.rating}" id="rating" placeholder="Rating" required>
+					</div>
+					<div class="col-8">
+						<label for="releaseYear" class="form-label ms-3">Release Year</label>
+						<select class="form-select" aria-label="Default select example" name="releaseYear" id="releaseYear" required>
+						  <option 
+						  th:each="year : ${releaseYearList}"
+						  th:value="${year.releasedYear}"
+						  th:text="${year.releasedYear}"
+						  th:selected="${year == movie.releaseYear}">
+						  </option>
+						</select>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="row d-flex justify-content-between mt-5">
+			<div class="col-6">
+				<label for="starring" class="form-label ms-3">Starring</label>
+				<input type="text" class="form-control" name="starring" th:value="${movie.starring}" placeholder="starring" id="starring" required>
+			</div>
+			<div class="col-5">
+				<div class="row">
+					<div class="col-4">
+						<label for="runTime" class="form-label ms-3">Runtime</label>
+						<input type="number" class="form-control" name="runtime" th:value="${movie.runtime}" id="runTime" placeholder="RunTime" required>
+					</div>
+					<div class="col-8">
+						<label for="releaseDate" class="form-label ms-3">Released Date</label>
+						<input type="date" class="form-control" min="2018-01-01" max="" onfocus="this.max=new Date().toISOString().split('T')[0]"
+						name="releaseDate" th:value="${movie.releaseDate}" id="releaseDate" required>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="row d-flex justify-content-between mt-5">
+			<div class="col-6">
+				<label for="accordionPanelsStayOpenExample" class="form-label ms-3">Choose Generes</label>
+				<div class="accordion" id="accordionPanelsStayOpenExample">
+				  <div class="accordion-item">
+				    <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+				      <button class="accordion-button" type="button" style="z-index: 0;" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+				         Generes
+				      </button>
+				    </h2>
+				    <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingOne">
+				      <div class="accordion-body">
+						 <div class="form-check" th:each="genere : ${genereList}">
+						  <input class="form-check-input" type="checkbox" name="generesList" th:value="${genere.genere}" th:checked="${#lists.contains(movie.generes, genere)}" >
+						  <label class="form-check-label text-dark" th:for="${genere.id}" th:text="${genere.genere}">Action</label>
+						</div> 
+				      </div>
+				    </div>
+				  </div>
+				</div>
+				
+			</div>
+			<div class="col-5">
+				<label for="image" class="form-label ms-3">Image</label>
+				<input th:if="${movie.id == null}" type="file" class="form-control" name="imageFile" id="image" placeholder="Image" required>
+				<!-- update image -->
+				<div th:if="${movie.id != null}" class="accordion" id="accordionExample">
+				  <div class="accordion-item">
+				    <h2 class="accordion-header" id="headingOne">
+				      <button class="accordion-button collapsed" type="button" style="z-index: 0;" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+				        Change Image
+				      </button>
+				    </h2>
+				    <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+				      <div class="accordion-body">
+						  <label class="mt-3 text-dark" style="vertical-align: top;">Orginal image : </label>
+						  <img th:src="@{'/image/movie/'+${movie.id}+'/show'}" alt="moive" 
+						  style="width: 60%;position: relative;right: -30px;">
+						  <label for="image" class="ms-3 mt-3 mb-1 text-dark">Change Image File</label>
+				        <input type="file" class="form-control" name="imageFile" id="image" placeholder="Image">
+				      </div>
+				    </div>
+				  </div>
+				</div>
+				<!-- update image -->
+			</div>
+		</div>
+
+		<div class="row d-flex justify-content-between mt-5">
+			<div class="col-6">
+				<label for="synopsisEng" class="form-label ms-3">Synopsis English</label>
+				<textarea rows="4" type="text" class="form-control" name="synopsis.synopsisEng" th:text="${movie.synopsis.synopsisEng}" id="synopsisEng" placeholder="Synopsis Eng" required></textarea>
+			</div>
+			<div class="col-6">
+				<label for="synopsisMm" class="form-label ms-3">Synopsis Myanmar</label>
+				<textarea rows="4" type="text" class="form-control" name="synopsis.synopsisMm" th:text="${movie.synopsis.synopsisMm}" id="synopsisMm" placeholder="Synopsis Myanmar"></textarea>
+			</div>
+		</div>
+
+		<button type="submit" class="btn btn-info mt-3 position-absolute end-0 me-3" th:text="${(movie.id == null)? 'Next > ' : 'Save'}"></button>
+		</form>
+	</div>
+
+	<footer th:replace="~{common/footer :: footer}"></footer>
+	<script th:replace="~{common/bootstrap-script :: footer}"></script>
+</body>
+
+</html>

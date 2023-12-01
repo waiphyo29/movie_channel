@@ -1,0 +1,53 @@
+<nav th:fragment="navebar" class="navbar navbar-expand-md navbar-light bg-dark position-sticky top-0" style="z-index: 1;">
+    <div class="container-lg">
+      <a class="navbar-brand me-5 text-light" href="/">Channel W </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link me-2 active text-light" aria-current="page" th:href="@{'/movie'}">Movie</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link me-2 active text-light" aria-current="page" th:href="@{'/serie'}">Serie-TV</a>
+          </li>
+          
+          <li th:if="${releaseYearList != null && !(releaseYearList.isEmpty())}" class="nav-item dropdown"><!-- ReleaseYear -->
+            <a class="nav-link me-2 dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Release Year
+            </a>
+            <ul class="dropdown-menu dropdown-menu-dark drop-list bg-dark" aria-labelledby="navbarDropdown" style="min-width: 100px;">
+              <li th:each="releaseYear : ${releaseYearList}"><a th:text="${releaseYear.releasedYear}" class="dropdown-item text-light" th:href="@{'/'+${releaseYear.id}+'/releaseYear'}"></a></li>
+            </ul>
+          </li>
+          
+          <li th:if="${genereList != null && !(genereList.isEmpty())}" class="nav-item dropdown"><!-- Genere -->
+            <a class="nav-link me-2 dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Genere
+            </a>
+            <ul class="dropdown-menu dropdown-menu-dark drop-list bg-dark" aria-labelledby="navbarDropdown" style="min-width: 130px;">
+              <li th:each="genere : ${genereList}"><a th:text="${genere.genere}" class="dropdown-item text-light" th:href="@{'/'+${genere.id}+'/genere'}"></a></li>
+            </ul>
+          </li>
+        </ul>
+        
+      	<div class="search_box"><!-- Search Box -->
+		  <form th:action="@{'/search'}" method="get" class="d-flex mb-0">
+            <input name="title" type="search" placeholder="Search" required>
+            <button type="submit"><i class="bi bi-search"></i></button>
+          </form>
+        </div>
+        <a th:if="${#ctx.session.viewer != null && #ctx.session.viewer.role == 'admin'}" th:href="@{'/movie/form'}" class="btn btn-outline-info ms-3 shadow-sm">Add Movie</a>
+        <!-- SignIn Button trigger modal -->
+        <button th:if="${#ctx.session.viewer == null}" type="button" class="btn btn-outline-info ms-3 shadow-sm" data-bs-toggle="modal" data-bs-target="#signinModal">Sign In</button>
+        <div th:replace="~{common/signIn :: modelBox}"></div>
+        <!-- Sing In -->
+        
+        <!-- Logout Button trigger modal -->
+        <button th:if="${#ctx.session.viewer != null}" type="button" class="btn btn-danger ms-3 shadow-sm" data-bs-toggle="modal" data-bs-target="#logoutModal">Logout</button>
+        <div th:replace="~{common/logout :: modelBox}"></div>
+        <!-- Logout -->
+      </div>
+    </div>
+  </nav>

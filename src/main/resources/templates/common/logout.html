@@ -1,0 +1,18 @@
+<!-- Logout Modal -->
+<div th:fragment="modelBox" class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="max-width: 400px;margin-top: 120px;">
+    <div class="modal-content bg-dark">
+        <div class="modal-header" style="border: none;">
+        <h5 class="modal-title" id="exampleModalLabel"></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body fs-3 fw-bold text-center text-info mb-2">
+            Do you want to LogOut..
+        </div>
+        <div class="modal-footer justify-content-evenly" style="border: none;">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <a th:href="@{'/user/logout'}"><button type="button" class="btn btn-danger">Logout</button></a>
+        </div>
+    </div>
+    </div>
+</div>

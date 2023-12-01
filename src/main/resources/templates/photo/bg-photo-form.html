@@ -1,0 +1,44 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link th:replace="~{common/header :: header}" rel="stylesheet" href="#">
+	<link rel="stylesheet" th:href="@{/css/style.css}">
+	<title>Movie Form</title>
+</head>
+
+<body>
+	<nav th:replace="~{common/nav :: navebar}"></nav>
+	
+	<!-- card start -->
+	<div class="container d-flex justify-content-center mt-4"><h1>BackGround Image</h1></div>
+	<div class="container">
+		<div class="row row-cols-1 row-cols-md-3 g-4">
+		  <div th:each="photo : ${photos}" class="col">
+		    <div class="card">
+		      <img class="card-img-top" th:src="@{'/image/photo/'+${photo.id}+'/show'}" alt="moive" >
+		      <div class="card-body">
+				  <a th:href="@{'/image/photo/'+${movieId}+'/delete/'+${photo.id}}" class="btn btn-danger">delete</a>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+		<div class="row">
+			<div class="col-6 offset-3 mt-3">
+				<!-- add new start -->
+				<form enctype="multipart/form-data" th:action="@{'/image/photo/'+${movieId}+'/new'}" method="post">
+				  <input type="file" class="form-control" name="photoFile" id="photo" required/>
+				  <button type="submit" class="btn btn-outline-warning mt-2" style="position: relative;left: 45%;" >Add Photo</button>
+				</form>
+				<!-- add new end -->
+			</div>
+		</div>
+	</div>
+	<!-- card end -->
+	
+	<footer th:replace="~{common/footer :: footer}"></footer>
+	<script th:replace="~{common/bootstrap-script :: footer}"></script>
+</body>
+
+</html>

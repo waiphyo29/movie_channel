@@ -1,0 +1,316 @@
+body{
+    background-color: #1b1b1b;
+    color: #b6b6b6;
+}
+.modal-backdrop{
+	z-index: -1;
+}
+#whole-container{
+    width: 100%;
+    text-align: center;
+}
+#whole-container #expection{
+    padding: 10px 0;
+}
+#crousel-container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.drop-list{
+    max-height: 150px;
+    overflow-y: auto;
+    scrollbar-width: none;
+}
+.drop-list::-webkit-scrollbar{
+    display: none;
+}
+.search_box{
+    height: 30px;
+    padding: 20px 15px;
+    display: flex;
+    border-radius: 5px;
+    align-items: center;
+    background: azure;
+    box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.2);
+}
+.search_box input{
+    width: 100px;
+    outline: none;
+    border: none;
+    background: transparent;
+    margin-right: 10px;
+    transition: 0.2s ease-in-out;
+}
+.search_box input:focus{
+    width: 200px;
+}
+.search_box .bi-search{
+    color: #424242;
+}
+.search_box button{
+	border: none;
+	background: transparent;
+}
+.modal-content{
+	overflow: hidden;
+}
+.outter-container{
+	max-width: 400px;
+}
+.box-holder{
+	width: 100%;
+	height: 400px;
+	position: relative;
+}
+.box-holder .signBox{
+	width: 99%;
+	height: fit-content;
+	position: absolute;
+	transform: translateY(-150%);
+	transition: 0.8s ease-out;
+}
+#signinBox{
+	transform: translateY(0%);
+}
+
+/* img slider */
+.container-s{
+    width: 83%;
+    padding: 0 10px;
+}
+.slider-wrapper {
+    position: relative;
+}
+.slider-wrapper .slide-button{
+    position: absolute;
+    top: 40%;
+    height: 30px;
+    width: 30px;
+    color: #ffff;
+    border: none;
+    outline: none;
+    background: #6d6d6d;
+    font-size: 1.2rem;
+    cursor: pointer;
+    z-index: 0;
+}
+.slider-wrapper .slide-button:hover{
+    background: #4444;
+}
+.slider-wrapper .slide-button#prev-slide{
+    left: -20px;
+}
+.slider-wrapper .slide-button#next-slide{
+    right: -20px;
+}
+.slider-wrapper .image-list{
+    display: grid;
+    gap: 16px;
+    font-size: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    grid-template-columns: repeat(10, 1fr);
+}
+.slider-wrapper .image-list > a{
+	text-decoration: none;
+	height: 160px;
+}
+.slider-wrapper .image-list::-webkit-scrollbar{
+    display: none;
+}
+.slider-wrapper .image-list .image-item{
+    width: 125px;
+    height: 160px;
+    aspect-ratio: 1 / 2;
+    object-position: center;
+    object-fit: cover;
+    transition: 0.1s ease;
+}
+.slider-wrapper .image-list .image-item:hover{
+    transform: scale(1.03);
+}
+.image-list a .popular{
+	max-width: 50px;
+	height: 15px;
+	position: relative;
+	top: -25px;
+	left: 3px;
+	background: rgb(45, 44, 67);
+	opacity: 0.7;
+	border-radius: 5px;
+	display: flex;
+	justify-content: start;
+}
+.view{
+	height: 15px;
+	margin-top: -3px;
+	margin-left: 3px;
+	font-size: small;
+	color: rgb(255, 255, 255);
+}
+@media (max-width: 500px){
+    #crousel-container{
+        height: 150px;
+    }
+    .slider-wrapper .image-list .image-item{
+        width: 100px;
+        height: 150px;
+    }
+    .slider-wrapper .slide-button{
+        width: 20px;
+        height: 20px;
+    }
+}
+
+/* Card */
+#card{
+    height: 260px;
+    position: relative;
+    overflow: hidden;
+    background-color: transparent;
+}
+.card-sorter{
+    width: 100%;
+    height: 70px;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    border-radius: 20px;
+    background: rgb(45, 44, 67);
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.5);
+}
+.card-sorter h5{
+    display: inline-block;
+    font-weight: bold;
+    font-size: x-large;
+    margin-left: 15px;
+    color: rgb(255, 255, 255);
+}
+.card-sorter .sortBy{
+    list-style: none;
+    margin-right: 30px;
+}
+.card-sorter .sortBy li{
+    display: inline-block;
+    padding: 5px 0px;
+    margin: 0px 10px;
+    font-size: large;
+    font-weight: bold;
+    cursor: pointer;
+    color: rgb(255, 255, 255);
+}
+.card-sorter .sortBy .underline{
+	border-bottom: 2px solid rgb(255, 255, 255);
+}
+.card-sorter .sortBy .underline:hover{
+	border-bottom: 2px solid rgb(192, 192, 192);
+}
+.card-sorter .sortBy li:hover{
+    color: rgb(192, 192, 192);
+}
+#card #card-image{
+    width: 100%;
+    height: 200px;
+    aspect-ratio: 1 / 2;
+    object-fit: cover;
+    object-position: center;
+}
+#card #releaseDate{
+    width: 50px;
+    height: 25px;
+    position: absolute;
+    top: 170px;
+    right: 5px;
+    background-color: rgb(45, 44, 67);
+    border-radius: 15px;
+    text-align: center;
+    color: #ffff;
+}
+#card #detail{
+    width: 100%;
+    height: auto;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+}
+#card #detail .bi-play-fill{
+	color: rgb(45, 44, 67);
+}
+#card #card-image,
+#card #detail{
+    transition: 200ms ease-in-out;
+}
+#card #detail h3{
+    margin-top: 90px;
+}
+#card #card-body{
+    padding: 0;
+    text-align: center;
+}
+#card-link{
+	text-decoration: none;
+}
+#card #card-body p,#card #card-body h6{
+    margin: 6px 0px 0px;
+    font-weight: bold;
+    font-size: medium;
+    color: rgb(128, 128, 128);
+}
+#card:hover > #detail{
+    opacity: 1;
+}
+#card:hover > #card-image{
+    filter: blur(0.5px);
+    transform: scale(1.05);
+}
+#card:hover > #releaseDate{
+    filter: blur(0.5px);
+}
+@media (max-width: 991px){
+    #card{
+        height: 220px;
+    }
+    #card #card-image{
+        height: 160px;
+    }
+    #card #releaseDate{
+        top: 130px;
+        width: 40px;
+        height: 20;
+        font-size: small;
+    }
+}
+@media (max-width: 575px){
+    #card{
+        height: 260px;
+    }
+    #card #card-image{
+        height: 200px;
+    }
+    #card #releaseDate{
+        top: 170px;
+        width: 50px;
+        height: 25;
+        font-size: medium;
+    }
+}
+@media (max-width: 460px){
+    #card{
+        height: 220px;
+    }
+    #card #card-image{
+        height: 160px;
+    }
+    #card #releaseDate{
+        top: 130px;
+        width: 40px;
+        height: 20;
+        font-size: small;
+    }
+}
+
